@@ -9,8 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResumeRouteImport } from './routes/resume'
+import { Route as ResearchRouteImport } from './routes/research'
+import { Route as RecognitionRouteImport } from './routes/recognition'
+import { Route as PracticeInterestsRouteImport } from './routes/practice-interests'
+import { Route as MootCourtRouteImport } from './routes/moot-court'
+import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as ConnectRouteImport } from './routes/connect'
+import { Route as AcademicJourneyRouteImport } from './routes/academic-journey'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ResumeRoute = ResumeRouteImport.update({
+  id: '/resume',
+  path: '/resume',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecognitionRoute = RecognitionRouteImport.update({
+  id: '/recognition',
+  path: '/recognition',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeInterestsRoute = PracticeInterestsRouteImport.update({
+  id: '/practice-interests',
+  path: '/practice-interests',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MootCourtRoute = MootCourtRouteImport.update({
+  id: '/moot-court',
+  path: '/moot-court',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperienceRoute = ExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectRoute = ConnectRouteImport.update({
+  id: '/connect',
+  path: '/connect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AcademicJourneyRoute = AcademicJourneyRouteImport.update({
+  id: '/academic-journey',
+  path: '/academic-journey',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +67,144 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/academic-journey': typeof AcademicJourneyRoute
+  '/connect': typeof ConnectRoute
+  '/experience': typeof ExperienceRoute
+  '/moot-court': typeof MootCourtRoute
+  '/practice-interests': typeof PracticeInterestsRoute
+  '/recognition': typeof RecognitionRoute
+  '/research': typeof ResearchRoute
+  '/resume': typeof ResumeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/academic-journey': typeof AcademicJourneyRoute
+  '/connect': typeof ConnectRoute
+  '/experience': typeof ExperienceRoute
+  '/moot-court': typeof MootCourtRoute
+  '/practice-interests': typeof PracticeInterestsRoute
+  '/recognition': typeof RecognitionRoute
+  '/research': typeof ResearchRoute
+  '/resume': typeof ResumeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/academic-journey': typeof AcademicJourneyRoute
+  '/connect': typeof ConnectRoute
+  '/experience': typeof ExperienceRoute
+  '/moot-court': typeof MootCourtRoute
+  '/practice-interests': typeof PracticeInterestsRoute
+  '/recognition': typeof RecognitionRoute
+  '/research': typeof ResearchRoute
+  '/resume': typeof ResumeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/academic-journey'
+    | '/connect'
+    | '/experience'
+    | '/moot-court'
+    | '/practice-interests'
+    | '/recognition'
+    | '/research'
+    | '/resume'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/academic-journey'
+    | '/connect'
+    | '/experience'
+    | '/moot-court'
+    | '/practice-interests'
+    | '/recognition'
+    | '/research'
+    | '/resume'
+  id:
+    | '__root__'
+    | '/'
+    | '/academic-journey'
+    | '/connect'
+    | '/experience'
+    | '/moot-court'
+    | '/practice-interests'
+    | '/recognition'
+    | '/research'
+    | '/resume'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcademicJourneyRoute: typeof AcademicJourneyRoute
+  ConnectRoute: typeof ConnectRoute
+  ExperienceRoute: typeof ExperienceRoute
+  MootCourtRoute: typeof MootCourtRoute
+  PracticeInterestsRoute: typeof PracticeInterestsRoute
+  RecognitionRoute: typeof RecognitionRoute
+  ResearchRoute: typeof ResearchRoute
+  ResumeRoute: typeof ResumeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/resume': {
+      id: '/resume'
+      path: '/resume'
+      fullPath: '/resume'
+      preLoaderRoute: typeof ResumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recognition': {
+      id: '/recognition'
+      path: '/recognition'
+      fullPath: '/recognition'
+      preLoaderRoute: typeof RecognitionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice-interests': {
+      id: '/practice-interests'
+      path: '/practice-interests'
+      fullPath: '/practice-interests'
+      preLoaderRoute: typeof PracticeInterestsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/moot-court': {
+      id: '/moot-court'
+      path: '/moot-court'
+      fullPath: '/moot-court'
+      preLoaderRoute: typeof MootCourtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experience': {
+      id: '/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ExperienceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connect': {
+      id: '/connect'
+      path: '/connect'
+      fullPath: '/connect'
+      preLoaderRoute: typeof ConnectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/academic-journey': {
+      id: '/academic-journey'
+      path: '/academic-journey'
+      fullPath: '/academic-journey'
+      preLoaderRoute: typeof AcademicJourneyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +217,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcademicJourneyRoute: AcademicJourneyRoute,
+  ConnectRoute: ConnectRoute,
+  ExperienceRoute: ExperienceRoute,
+  MootCourtRoute: MootCourtRoute,
+  PracticeInterestsRoute: PracticeInterestsRoute,
+  RecognitionRoute: RecognitionRoute,
+  ResearchRoute: ResearchRoute,
+  ResumeRoute: ResumeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
