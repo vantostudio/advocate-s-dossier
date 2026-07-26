@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResearchRouteImport } from './routes/research'
+import { Route as RecognitionRouteImport } from './routes/recognition'
 import { Route as PracticeInterestsRouteImport } from './routes/practice-interests'
 import { Route as MootCourtRouteImport } from './routes/moot-court'
 import { Route as ExperienceRouteImport } from './routes/experience'
@@ -19,6 +20,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ResearchRoute = ResearchRouteImport.update({
   id: '/research',
   path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecognitionRoute = RecognitionRouteImport.update({
+  id: '/recognition',
+  path: '/recognition',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PracticeInterestsRoute = PracticeInterestsRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/experience': typeof ExperienceRoute
   '/moot-court': typeof MootCourtRoute
   '/practice-interests': typeof PracticeInterestsRoute
+  '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/experience': typeof ExperienceRoute
   '/moot-court': typeof MootCourtRoute
   '/practice-interests': typeof PracticeInterestsRoute
+  '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/experience': typeof ExperienceRoute
   '/moot-court': typeof MootCourtRoute
   '/practice-interests': typeof PracticeInterestsRoute
+  '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/moot-court'
     | '/practice-interests'
+    | '/recognition'
     | '/research'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/moot-court'
     | '/practice-interests'
+    | '/recognition'
     | '/research'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/experience'
     | '/moot-court'
     | '/practice-interests'
+    | '/recognition'
     | '/research'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   ExperienceRoute: typeof ExperienceRoute
   MootCourtRoute: typeof MootCourtRoute
   PracticeInterestsRoute: typeof PracticeInterestsRoute
+  RecognitionRoute: typeof RecognitionRoute
   ResearchRoute: typeof ResearchRoute
 }
 
@@ -115,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/research'
       fullPath: '/research'
       preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recognition': {
+      id: '/recognition'
+      path: '/recognition'
+      fullPath: '/recognition'
+      preLoaderRoute: typeof RecognitionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/practice-interests': {
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExperienceRoute: ExperienceRoute,
   MootCourtRoute: MootCourtRoute,
   PracticeInterestsRoute: PracticeInterestsRoute,
+  RecognitionRoute: RecognitionRoute,
   ResearchRoute: ResearchRoute,
 }
 export const routeTree = rootRouteImport
