@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as RecognitionRouteImport } from './routes/recognition'
 import { Route as PracticeInterestsRouteImport } from './routes/practice-interests'
@@ -17,6 +18,11 @@ import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as AcademicJourneyRouteImport } from './routes/academic-journey'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ResumeRoute = ResumeRouteImport.update({
+  id: '/resume',
+  path: '/resume',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResearchRoute = ResearchRouteImport.update({
   id: '/research',
   path: '/research',
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/practice-interests': typeof PracticeInterestsRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/resume': typeof ResumeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/practice-interests': typeof PracticeInterestsRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/resume': typeof ResumeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/practice-interests': typeof PracticeInterestsRoute
   '/recognition': typeof RecognitionRoute
   '/research': typeof ResearchRoute
+  '/resume': typeof ResumeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/practice-interests'
     | '/recognition'
     | '/research'
+    | '/resume'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/practice-interests'
     | '/recognition'
     | '/research'
+    | '/resume'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/practice-interests'
     | '/recognition'
     | '/research'
+    | '/resume'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,10 +131,18 @@ export interface RootRouteChildren {
   PracticeInterestsRoute: typeof PracticeInterestsRoute
   RecognitionRoute: typeof RecognitionRoute
   ResearchRoute: typeof ResearchRoute
+  ResumeRoute: typeof ResumeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/resume': {
+      id: '/resume'
+      path: '/resume'
+      fullPath: '/resume'
+      preLoaderRoute: typeof ResumeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/research': {
       id: '/research'
       path: '/research'
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   PracticeInterestsRoute: PracticeInterestsRoute,
   RecognitionRoute: RecognitionRoute,
   ResearchRoute: ResearchRoute,
+  ResumeRoute: ResumeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
