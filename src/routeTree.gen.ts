@@ -9,9 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as MootCourtRouteImport } from './routes/moot-court'
 import { Route as AcademicJourneyRouteImport } from './routes/academic-journey'
 import { Route as IndexRouteImport } from './routes/index'
 
+const MootCourtRoute = MootCourtRouteImport.update({
+  id: '/moot-court',
+  path: '/moot-court',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AcademicJourneyRoute = AcademicJourneyRouteImport.update({
   id: '/academic-journey',
   path: '/academic-journey',
@@ -26,31 +32,42 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
+  '/moot-court': typeof MootCourtRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
+  '/moot-court': typeof MootCourtRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
+  '/moot-court': typeof MootCourtRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/academic-journey'
+  fullPaths: '/' | '/academic-journey' | '/moot-court'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/academic-journey'
-  id: '__root__' | '/' | '/academic-journey'
+  to: '/' | '/academic-journey' | '/moot-court'
+  id: '__root__' | '/' | '/academic-journey' | '/moot-court'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcademicJourneyRoute: typeof AcademicJourneyRoute
+  MootCourtRoute: typeof MootCourtRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/moot-court': {
+      id: '/moot-court'
+      path: '/moot-court'
+      fullPath: '/moot-court'
+      preLoaderRoute: typeof MootCourtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/academic-journey': {
       id: '/academic-journey'
       path: '/academic-journey'
@@ -71,6 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcademicJourneyRoute: AcademicJourneyRoute,
+  MootCourtRoute: MootCourtRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
