@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResearchRouteImport } from './routes/research'
 import { Route as MootCourtRouteImport } from './routes/moot-court'
 import { Route as AcademicJourneyRouteImport } from './routes/academic-journey'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ResearchRoute = ResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MootCourtRoute = MootCourtRouteImport.update({
   id: '/moot-court',
   path: '/moot-court',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
   '/moot-court': typeof MootCourtRoute
+  '/research': typeof ResearchRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
   '/moot-court': typeof MootCourtRoute
+  '/research': typeof ResearchRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
   '/moot-court': typeof MootCourtRoute
+  '/research': typeof ResearchRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/academic-journey' | '/moot-court'
+  fullPaths: '/' | '/academic-journey' | '/moot-court' | '/research'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/academic-journey' | '/moot-court'
-  id: '__root__' | '/' | '/academic-journey' | '/moot-court'
+  to: '/' | '/academic-journey' | '/moot-court' | '/research'
+  id: '__root__' | '/' | '/academic-journey' | '/moot-court' | '/research'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcademicJourneyRoute: typeof AcademicJourneyRoute
   MootCourtRoute: typeof MootCourtRoute
+  ResearchRoute: typeof ResearchRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/research': {
+      id: '/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof ResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/moot-court': {
       id: '/moot-court'
       path: '/moot-court'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcademicJourneyRoute: AcademicJourneyRoute,
   MootCourtRoute: MootCourtRoute,
+  ResearchRoute: ResearchRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
