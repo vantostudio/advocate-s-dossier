@@ -15,6 +15,7 @@ import { Route as RecognitionRouteImport } from './routes/recognition'
 import { Route as PracticeInterestsRouteImport } from './routes/practice-interests'
 import { Route as MootCourtRouteImport } from './routes/moot-court'
 import { Route as ExperienceRouteImport } from './routes/experience'
+import { Route as ConnectRouteImport } from './routes/connect'
 import { Route as AcademicJourneyRouteImport } from './routes/academic-journey'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -48,6 +49,11 @@ const ExperienceRoute = ExperienceRouteImport.update({
   path: '/experience',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConnectRoute = ConnectRouteImport.update({
+  id: '/connect',
+  path: '/connect',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AcademicJourneyRoute = AcademicJourneyRouteImport.update({
   id: '/academic-journey',
   path: '/academic-journey',
@@ -62,6 +68,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
+  '/connect': typeof ConnectRoute
   '/experience': typeof ExperienceRoute
   '/moot-court': typeof MootCourtRoute
   '/practice-interests': typeof PracticeInterestsRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
+  '/connect': typeof ConnectRoute
   '/experience': typeof ExperienceRoute
   '/moot-court': typeof MootCourtRoute
   '/practice-interests': typeof PracticeInterestsRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/academic-journey': typeof AcademicJourneyRoute
+  '/connect': typeof ConnectRoute
   '/experience': typeof ExperienceRoute
   '/moot-court': typeof MootCourtRoute
   '/practice-interests': typeof PracticeInterestsRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/academic-journey'
+    | '/connect'
     | '/experience'
     | '/moot-court'
     | '/practice-interests'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/academic-journey'
+    | '/connect'
     | '/experience'
     | '/moot-court'
     | '/practice-interests'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/academic-journey'
+    | '/connect'
     | '/experience'
     | '/moot-court'
     | '/practice-interests'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcademicJourneyRoute: typeof AcademicJourneyRoute
+  ConnectRoute: typeof ConnectRoute
   ExperienceRoute: typeof ExperienceRoute
   MootCourtRoute: typeof MootCourtRoute
   PracticeInterestsRoute: typeof PracticeInterestsRoute
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExperienceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/connect': {
+      id: '/connect'
+      path: '/connect'
+      fullPath: '/connect'
+      preLoaderRoute: typeof ConnectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/academic-journey': {
       id: '/academic-journey'
       path: '/academic-journey'
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcademicJourneyRoute: AcademicJourneyRoute,
+  ConnectRoute: ConnectRoute,
   ExperienceRoute: ExperienceRoute,
   MootCourtRoute: MootCourtRoute,
   PracticeInterestsRoute: PracticeInterestsRoute,
@@ -208,3 +229,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
