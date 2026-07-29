@@ -65,6 +65,8 @@
   --color-forest: var(--forest);
   --color-stone: var(--stone);
   --color-ink-muted: var(--ink-muted);
+  --color-paper-raised: var(--paper-raised);
+  --color-bronze-soft: var(--bronze-soft);
   --font-display: "Instrument Serif", "Tiempos Headline", Georgia, serif;
   --font-sans: "Inter", "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
@@ -79,6 +81,10 @@
   --forest: oklch(0.32 0.04 165);
   --stone: oklch(0.86 0.015 75);
   --ink-muted: oklch(0.5 0.008 70);
+  --paper-raised: oklch(0.99 0.005 82);
+  --bronze-soft: oklch(0.6 0.09 62 / 0.14);
+  --shadow-editorial: 0 30px 80px -40px oklch(0.185 0.004 60 / 0.38);
+  --grain-opacity: 0.035;
 
   --background: var(--paper);
   --foreground: var(--charcoal);
@@ -115,25 +121,37 @@
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
+  /* Night edition — ink-black stock, warm bronze foil, bone type */
+  --paper: oklch(0.175 0.006 70);
+  --paper-raised: oklch(0.215 0.007 72);
+  --charcoal: oklch(0.955 0.008 85);
+  --bronze: oklch(0.75 0.1 68);
+  --bronze-soft: oklch(0.75 0.1 68 / 0.16);
+  --forest: oklch(0.62 0.06 165);
+  --stone: oklch(0.38 0.012 75);
+  --ink-muted: oklch(0.72 0.012 80);
+  --shadow-editorial: 0 30px 80px -40px oklch(0 0 0 / 0.75);
+  --grain-opacity: 0.055;
+
+  --background: var(--paper);
+  --foreground: var(--charcoal);
+  --card: var(--paper-raised);
+  --card-foreground: var(--charcoal);
+  --popover: var(--paper-raised);
+  --popover-foreground: var(--charcoal);
+  --primary: var(--charcoal);
+  --primary-foreground: var(--paper);
+  --secondary: var(--stone);
+  --secondary-foreground: var(--charcoal);
+  --muted: oklch(0.26 0.008 72);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--bronze);
+  --accent-foreground: var(--paper);
+  --destructive: oklch(0.65 0.19 28);
+  --destructive-foreground: oklch(0.98 0.003 248);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: var(--bronze);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -171,6 +189,20 @@
   .font-mono, code, cite {
     font-family: var(--font-mono);
   }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  ::selection {
+    background: var(--bronze);
+    color: var(--paper);
+  }
 }
 
 @utility rule {
@@ -192,4 +224,43 @@
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   color: var(--ink-muted);
+}
+
+@utility surface-raised {
+  background: var(--paper-raised);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-editorial);
+}
+
+@utility link-underline {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  &:hover::after,
+  &[data-status="active"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 }
