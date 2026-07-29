@@ -61,10 +61,10 @@ export function SiteHeader() {
       >
         <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-6 md:px-12 md:py-5">
           <Link to="/" className="group flex min-w-0 items-baseline gap-3">
-            <span className="truncate font-display text-[1.2rem] leading-none tracking-tight sm:text-[1.35rem]">
+            <span className="shrink-0 font-display text-[1.2rem] leading-none tracking-tight sm:text-[1.35rem]">
               Advocate<span className="text-bronze">.</span>Profile
             </span>
-            <span className="folio hidden shrink-0 md:inline">Est. 2026 — Nairobi</span>
+            <span className="folio hidden truncate 2xl:inline">Est. 2026 — Nairobi</span>
           </Link>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-5">
