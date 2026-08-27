@@ -54,7 +54,7 @@ function Identity() {
 
   return (
     <main>
-      {/* Dossier — signature opening */}
+      {/* Profile card — signature opening */}
       <section className="relative overflow-hidden grain">
         <div
           aria-hidden
@@ -62,36 +62,30 @@ function Identity() {
           style={{ background: "radial-gradient(closest-side, var(--bronze-soft), transparent)" }}
         />
         <div className="relative mx-auto max-w-[1400px] px-5 pt-8 sm:px-6 md:px-12 md:pt-14">
-          <div className="flex items-center justify-between gap-4">
-            <span className="folio truncate">Dossier № 001 / Volume I</span>
-            <span className="folio hidden shrink-0 sm:inline">Filed — MMXXVI</span>
-          </div>
-
           <div className="relative mt-8 md:mt-14">
             <div
               className={`surface-raised relative mx-auto max-w-4xl rounded-sm p-6 transition-all duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] sm:p-8 md:p-14 ${
                 opened ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
               }`}
             >
-              <span aria-hidden className="absolute -top-3 right-8 hidden h-6 w-28 rounded-sm bg-bronze/25 sm:block" />
               <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 border-b border-border pb-6">
                 <div className="min-w-0">
-                  <p className="folio">Case File</p>
+                  <p className="folio">Profile</p>
                   <p className="mt-2 truncate font-display text-2xl text-bronze md:text-3xl">
                     Amani W. Kariuki
                   </p>
                 </div>
                 <div className="shrink-0 text-right">
-                  <p className="folio">Reference</p>
-                  <p className="mt-2 font-mono text-xs sm:text-sm">AWK / 2026 / LLB</p>
+                  <p className="folio">Programme</p>
+                  <p className="mt-2 font-mono text-xs sm:text-sm">LL.B. (Hons), 2027</p>
                 </div>
               </div>
               <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 text-sm md:grid-cols-4">
                 {[
-                  ["Jurisdiction", "Republic of Kenya"],
+                  ["Country", "Kenya"],
                   ["Standing", "LL.B. Candidate"],
                   ["Class of", "2027"],
-                  ["Chambers", "Nairobi"],
+                  ["Based in", "Nairobi"],
                 ].map(([k, v]) => (
                   <div key={k} className="min-w-0">
                     <p className="folio">{k}</p>
@@ -100,12 +94,13 @@ function Identity() {
                 ))}
               </div>
               <p className="mt-8 text-sm leading-relaxed text-ink-muted">
-                Contents: identity · academic journey · moot court · research &amp; publications · experience · practice interests · recognition · résumé.
+                Academic journey · moot court · research &amp; publications · experience · practice interests · recognition · résumé.
               </p>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Hero — typography as hero */}
       <section className="mx-auto max-w-[1400px] px-5 pt-20 sm:px-6 md:px-12 md:pt-36">
