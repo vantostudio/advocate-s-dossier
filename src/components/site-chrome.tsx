@@ -1,17 +1,16 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
-import { ThemeToggle } from "./theme-toggle";
 
 const NAV = [
-  { to: "/", label: "Identity", num: "I" },
-  { to: "/academic-journey", label: "Academic Journey", num: "II" },
-  { to: "/moot-court", label: "Moot Court", num: "III" },
-  { to: "/research", label: "Research & Publications", num: "IV" },
-  { to: "/experience", label: "Experience", num: "V" },
-  { to: "/practice-interests", label: "Practice Interests", num: "VI" },
-  { to: "/recognition", label: "Recognition", num: "VII" },
-  { to: "/resume", label: "Resume", num: "VIII" },
-  { to: "/connect", label: "Connect", num: "IX" },
+  { to: "/", label: "Identity" },
+  { to: "/academic-journey", label: "Academic Journey" },
+  { to: "/moot-court", label: "Moot Court" },
+  { to: "/research", label: "Research & Publications" },
+  { to: "/experience", label: "Experience" },
+  { to: "/practice-interests", label: "Practice Interests" },
+  { to: "/recognition", label: "Recognition" },
+  { to: "/resume", label: "Resume" },
+  { to: "/connect", label: "Connect" },
 ] as const;
 
 export function SiteHeader() {
@@ -48,8 +47,6 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  const current = NAV.find((n) => n.to === pathname) ?? NAV[0];
-
   return (
     <>
       <header
@@ -64,7 +61,6 @@ export function SiteHeader() {
             <span className="shrink-0 font-display text-[1.2rem] leading-none tracking-tight sm:text-[1.35rem]">
               Advocate<span className="text-bronze">.</span>Profile
             </span>
-            <span className="folio hidden truncate 2xl:inline">Est. 2026 — Nairobi</span>
           </Link>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-5">
@@ -88,16 +84,12 @@ export function SiteHeader() {
 
             <span className="hidden h-5 w-px bg-border xl:block" />
 
-            <ThemeToggle />
-
             <button
               onClick={() => setOpen(true)}
               className="group flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase text-charcoal sm:text-[12px]"
-              aria-label="Open index"
+              aria-label="Open menu"
             >
-              <span className="hidden sm:inline">
-                <span className="text-ink-muted">{current.num}</span> Index
-              </span>
+              <span className="hidden sm:inline">Menu</span>
               <span className="flex h-9 w-9 items-center justify-center rounded-full border border-charcoal/25 transition-all duration-300 group-hover:border-bronze group-hover:bg-bronze group-hover:text-paper">
                 <span className="flex flex-col gap-[3px]">
                   <span className="block h-[1px] w-4 bg-current transition-transform duration-300 group-hover:-translate-y-[1px]" />
@@ -124,11 +116,11 @@ export function SiteHeader() {
         >
           <div className="mx-auto flex min-h-full max-w-[1400px] flex-col px-5 py-4 sm:px-6 md:px-12 md:py-5">
             <div className="flex items-center justify-between">
-              <span className="folio">Table of Contents</span>
+              <span className="folio">Navigation</span>
               <button
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-2 text-[12px] tracking-[0.18em] uppercase text-charcoal transition-colors hover:text-bronze"
-                aria-label="Close index"
+                aria-label="Close menu"
               >
                 Close
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-charcoal/25">×</span>
@@ -145,7 +137,6 @@ export function SiteHeader() {
                     className="group flex items-baseline gap-4 border-b border-border py-4 transition-colors hover:text-bronze md:gap-6 md:py-5"
                     style={{ animationDelay: `${i * 40}ms` }}
                   >
-                    <span className="folio w-6 shrink-0 md:w-8">{item.num}</span>
                     <span
                       className={`min-w-0 truncate font-display text-2xl transition-transform duration-500 group-hover:translate-x-1 sm:text-3xl md:text-4xl ${
                         active ? "text-bronze" : ""
@@ -163,7 +154,7 @@ export function SiteHeader() {
 
             <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
               <span className="folio">Nairobi · English · Kiswahili</span>
-              <span className="folio">© MMXXVI</span>
+              <span className="folio">© 2026</span>
             </div>
           </div>
         </div>
@@ -200,12 +191,12 @@ export function SiteFooter() {
 
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 py-14 md:grid-cols-12 md:gap-12">
           <div className="col-span-2 md:col-span-5">
-            <p className="folio">Colophon</p>
+            <p className="folio">About this site</p>
             <p className="mt-4 font-display text-xl leading-snug text-charcoal md:text-2xl">
-              A living dossier — updated as coursework, research, and practice evolve.
+A living record — updated as coursework, research, and practice evolve.
             </p>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-muted">
-              Set in Instrument Serif and Inter. Composed on paper stock #F7F4EF, printed in charcoal and bronze. Built to grow from student to advocate.
+Built to grow from student to advocate: a single place for academic work, writing, advocacy, and professional contact.
             </p>
           </div>
           <div className="md:col-span-3">
@@ -245,7 +236,7 @@ export function SiteFooter() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-2 px-5 py-6 sm:px-6 md:px-12">
-          <span className="folio">Volume I · Issue 01</span>
+          <span className="folio">Amani W. Kariuki</span>
           <span className="folio">Nairobi, Kenya</span>
         </div>
       </div>

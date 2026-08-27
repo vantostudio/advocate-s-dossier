@@ -28,7 +28,7 @@ function Connect() {
 
   return (
     <PageShell
-      eyebrow="Chapter IX · Correspondence"
+      eyebrow="Contact"
       title="Connect"
       lede="A short, considered message will always receive a considered reply. Please tell me a little about the reason for writing."
     >
@@ -50,7 +50,7 @@ function Connect() {
             </ul>
           </div>
           <div>
-            <p className="folio">Chambers</p>
+            <p className="folio">Based in</p>
             <p className="mt-3 text-sm leading-relaxed">Nairobi, Kenya · EAT (UTC+3)</p>
           </div>
         </div>
@@ -87,7 +87,7 @@ function Connect() {
             <textarea id="msg" required rows={5} className="mt-2 w-full resize-none border-0 border-b border-border bg-transparent pb-2 text-base leading-relaxed outline-none focus:border-bronze" />
           </div>
           <div className="flex items-center justify-between">
-            <span className="folio">{sent ? "Received — thank you." : "Signed & sealed"}</span>
+            <span className="folio">{sent ? "Received — thank you." : "Send message"}</span>
             <button
               type="submit"
               className="group inline-flex items-center gap-3 border-b border-charcoal pb-1 text-sm tracking-wide"

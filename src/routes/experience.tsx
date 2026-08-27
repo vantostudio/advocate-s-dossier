@@ -52,7 +52,7 @@ const ROLES = [
 function Experience() {
   return (
     <PageShell
-      eyebrow="Chapter V · Practice"
+      eyebrow="Practice"
       title="Experience"
       lede="Not yet an advocate. But not idle either. These are the rooms in which I have been quietly useful — and what they taught me."
     >

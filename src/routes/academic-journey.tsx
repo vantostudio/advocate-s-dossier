@@ -26,7 +26,7 @@ const ENTRIES = [
 function AcademicJourney() {
   return (
     <PageShell
-      eyebrow="Chapter II · Formation"
+      eyebrow="Education"
       title="Academic Journey"
       lede="A chronological ledger of the years that shaped the beginnings of a legal mind — degrees, scholarships, and the quieter certificates that mattered."
     >

@@ -27,7 +27,7 @@ const INTERESTS = [
 function PracticeInterests() {
   return (
     <PageShell
-      eyebrow="Chapter VI · Curiosity"
+      eyebrow="Interests"
       title="Practice Interests"
       lede="Not fields of expertise — fields of curiosity. Each is a set of questions I am currently learning to ask well, and the reading that got me there."
     >
@@ -35,7 +35,7 @@ function PracticeInterests() {
         {INTERESTS.map((it, i) => (
           <div key={it.name} className="bg-paper p-8 md:p-10">
             <div className="flex items-baseline justify-between">
-              <p className="folio">№ {(i + 1).toString().padStart(2, "0")}</p>
+              <p className="folio">{(i + 1).toString().padStart(2, "0")}</p>
               <span className="folio">Field</span>
             </div>
             <h2 className="mt-4 font-display text-3xl leading-tight text-charcoal md:text-4xl">{it.name}</h2>

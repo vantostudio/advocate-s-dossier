@@ -51,7 +51,7 @@ const GROUPS = [
 function Recognition() {
   return (
     <PageShell
-      eyebrow="Chapter VII · Honours"
+      eyebrow="Honours"
       title="Recognition"
       lede="Awards, leadership, and community — assembled without embellishment. The record matters more than the ribbon."
     >

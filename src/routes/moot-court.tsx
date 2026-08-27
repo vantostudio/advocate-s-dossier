@@ -43,7 +43,7 @@ const COMPETITIONS = [
 function MootCourt() {
   return (
     <PageShell
-      eyebrow="Chapter III · Advocacy"
+      eyebrow="Advocacy"
       title="Moot Court"
       lede="Advocacy in rehearsal. Every competition below was, first, hundreds of hours of quiet reading — and then, briefly, a room in which to make it count."
     >

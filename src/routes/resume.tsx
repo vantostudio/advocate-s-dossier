@@ -16,7 +16,7 @@ export const Route = createFileRoute("/resume")({
 function Resume() {
   return (
     <PageShell
-      eyebrow="Chapter VIII · Record"
+      eyebrow="Record"
       title="Résumé"
       lede="A working record — printable on demand, but built to be read here. Updated with each new page of the dossier."
     >
