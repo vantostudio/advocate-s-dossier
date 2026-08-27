@@ -37,7 +37,7 @@ function Research() {
 
   return (
     <PageShell
-      eyebrow="Chapter IV · Written Record"
+      eyebrow="Writing"
       title="Research & Publications"
       lede="An academic journal of my own — working papers, essays, and case notes. Each piece has an abstract, a citation, and a source."
     >
