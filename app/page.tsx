@@ -55,11 +55,6 @@ const SECTIONS = [
     d: "Courtroom exposure, claims preparation, mediation, and client-centred dispute resolution.",
   },
   {
-    href: "/research",
-    t: "Research & Writing",
-    d: "Legal opinions, memoranda, correspondence, case preparation, and focused legal study.",
-  },
-  {
     href: "/experience",
     t: "Experience",
     d: "Practical work across judicial, corporate, NGO, entrepreneurial, and creative settings.",
@@ -68,11 +63,6 @@ const SECTIONS = [
     href: "/practice-interests",
     t: "Practice Interests",
     d: "The legal fields shaped by hands-on experience, certification, and continued study.",
-  },
-  {
-    href: "/recognition",
-    t: "Recognition",
-    d: "Professional credentials, leadership, community contribution, and creative achievement.",
   },
   {
     href: "/resume",
@@ -198,7 +188,7 @@ export default function Identity() {
       {/* Sections index */}
       <section className="mx-auto mt-24 max-w-[1400px] px-5 sm:px-6 md:mt-32 md:px-12">
         <p className="folio">More sections</p>
-        <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2">
           {SECTIONS.map((c) => (
             <Link
               key={c.href}

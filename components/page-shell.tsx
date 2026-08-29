@@ -12,7 +12,7 @@ export function PageShell({
   children: ReactNode;
 }) {
   return (
-    <main className="mx-auto max-w-[1400px] px-5 pt-10 pb-20 sm:px-6 md:px-12 md:pt-20 md:pb-24">
+    <main className="mx-auto max-w-[1400px] px-5 pt-10 sm:px-6 md:px-12 md:pt-20">
       <div className="grid grid-cols-1 gap-6 border-b border-border pb-10 md:grid-cols-12 md:gap-8 md:pb-12">
         <div className="md:col-span-3">
           <p className="folio">{eyebrow}</p>
