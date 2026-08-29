@@ -14,8 +14,8 @@ export function SiteFooter() {
               Open a file with me.
             </p>
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-muted md:text-base">
-              Available for internships, research collaboration, moot coaching, and thoughtful legal
-              conversation.
+              Open to pupillage, legal research, mediation, client advisory, and professional
+              collaboration.
             </p>
           </div>
           <div className="md:col-span-4 md:justify-self-end">
@@ -33,11 +33,11 @@ export function SiteFooter() {
           <div className="col-span-2 md:col-span-5">
             <p className="folio">About this site</p>
             <p className="mt-4 font-display text-xl leading-snug text-charcoal md:text-2xl">
-              A living record — updated as coursework, research, and practice evolve.
+              A living record of legal training, practical experience, and professional growth.
             </p>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-muted">
-              Built to grow from student to advocate: a single place for academic work, writing,
-              advocacy, and professional contact.
+              From court observation and claims work to mediation and legal research, this dossier
+              brings Morgan&apos;s experience and credentials into one place.
             </p>
           </div>
           <div className="md:col-span-3">
@@ -69,20 +69,26 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-2.5 text-sm">
               <li>
                 <a
-                  href="mailto:hello@example.law"
+                  href="mailto:morganhope315@gmail.com"
                   className="link-underline text-charcoal hover:text-bronze"
                 >
-                  hello@example.law
+                  morganhope315@gmail.com
                 </a>
               </li>
               <li>
-                <a href="#" className="link-underline text-charcoal hover:text-bronze">
-                  LinkedIn
+                <a
+                  href="tel:+254113479930"
+                  className="link-underline text-charcoal hover:text-bronze"
+                >
+                  011 347 9930
                 </a>
               </li>
               <li>
-                <a href="#" className="link-underline text-charcoal hover:text-bronze">
-                  ORCID
+                <a
+                  href="tel:+254705710860"
+                  className="link-underline text-charcoal hover:text-bronze"
+                >
+                  070 571 0860
                 </a>
               </li>
             </ul>
@@ -92,7 +98,7 @@ export function SiteFooter() {
 
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-2 px-5 py-6 sm:px-6 md:px-12">
-          <span className="folio">Amani W. Kariuki</span>
+          <span className="folio">Oloo Morgan Hope</span>
           <span className="folio">Nairobi, Kenya</span>
         </div>
       </div>

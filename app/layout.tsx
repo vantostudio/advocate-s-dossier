@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Instrument_Serif, Inter } from "next/font/google";
 import type { ReactNode } from "react";
 
@@ -30,31 +30,43 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://advocate-s-dossier.vercel.app"),
   title: {
-    default: "Advocate Profile — Future Advocate. Researcher. Problem Solver.",
-    template: "%s — Advocate Profile",
+    default: "Oloo Morgan Hope — Law Graduate & Certified Professional Mediator",
+    template: "%s — Oloo Morgan Hope",
   },
   description:
-    "A digital identity platform documenting academic excellence, legal research, moot court, and professional growth.",
-  icons: { icon: "/favicon.ico" },
+    "Professional dossier of Oloo Morgan Hope, a law graduate, Advocates Training Programme candidate, and Certified Professional Mediator based in Nairobi.",
   openGraph: {
-    title: "Advocate Profile",
-    description: "Future Advocate. Researcher. Problem Solver.",
+    title: "Oloo Morgan Hope",
+    description:
+      "Law graduate, ATP candidate, legal researcher, and Certified Professional Mediator.",
     type: "website",
   },
   twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F7F4EF" },
+    { media: "(prefers-color-scheme: dark)", color: "#1B1A18" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${instrumentSerif.variable} ${inter.variable} ${ibmPlexMono.variable}`}
     >
       <body>
+        <a href="#content" className="skip-link">
+          Skip to content
+        </a>
         <div className="min-h-dvh bg-paper text-charcoal">
           <SiteHeader />
-          {children}
+          <div id="content">{children}</div>
           <SiteFooter />
         </div>
       </body>

@@ -3,22 +3,27 @@
 import { useState } from "react";
 
 const REASONS = [
+  "Pupillage opportunity",
   "Professional inquiry",
-  "Mentorship",
   "Research collaboration",
-  "Internship opportunity",
-  "Speaking invitation",
+  "Mediation & ADR",
+  "Design services",
 ];
 
 export function ConnectForm() {
   const [reason, setReason] = useState<string>(REASONS[0]);
-  const [sent, setSent] = useState(false);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setSent(true);
+        const data = new FormData(e.currentTarget);
+        const name = String(data.get("name") ?? "");
+        const email = String(data.get("email") ?? "");
+        const message = String(data.get("message") ?? "");
+        const subject = encodeURIComponent(`${reason} — ${name}`);
+        const body = encodeURIComponent(`${message}\n\nFrom: ${name}\nEmail: ${email}`);
+        window.location.href = `mailto:morganhope315@gmail.com?subject=${subject}&body=${body}`;
       }}
       className="md:col-span-7 space-y-8 border border-border p-8 md:p-10"
     >
@@ -28,6 +33,7 @@ export function ConnectForm() {
         </label>
         <input
           id="name"
+          name="name"
           required
           className="mt-2 w-full border-0 border-b border-border bg-transparent pb-2 font-display text-2xl outline-none focus:border-bronze"
         />
@@ -38,6 +44,7 @@ export function ConnectForm() {
         </label>
         <input
           id="email"
+          name="email"
           type="email"
           required
           className="mt-2 w-full border-0 border-b border-border bg-transparent pb-2 font-display text-2xl outline-none focus:border-bronze"
@@ -51,7 +58,7 @@ export function ConnectForm() {
               key={r}
               type="button"
               onClick={() => setReason(r)}
-              className={`rounded-full border px-4 py-1.5 text-xs tracking-wide transition-colors ${reason === r ? "border-charcoal bg-charcoal text-paper" : "border-border text-ink-muted hover:border-charcoal hover:text-charcoal"}`}
+              className={`min-h-11 rounded-full border px-4 py-2 text-xs tracking-wide transition-colors ${reason === r ? "border-charcoal bg-charcoal text-paper" : "border-border text-ink-muted hover:border-charcoal hover:text-charcoal"}`}
             >
               {r}
             </button>
@@ -64,16 +71,17 @@ export function ConnectForm() {
         </label>
         <textarea
           id="msg"
+          name="message"
           required
           rows={5}
           className="mt-2 w-full resize-none border-0 border-b border-border bg-transparent pb-2 text-base leading-relaxed outline-none focus:border-bronze"
         />
       </div>
       <div className="flex items-center justify-between">
-        <span className="folio">{sent ? "Received — thank you." : "Send message"}</span>
+        <span className="folio">Opens your email application</span>
         <button
           type="submit"
-          className="group inline-flex items-center gap-3 border-b border-charcoal pb-1 text-sm tracking-wide"
+          className="group inline-flex min-h-11 items-center gap-3 border-b border-charcoal text-sm tracking-wide"
         >
           Send correspondence
           <span className="text-bronze transition-transform group-hover:translate-x-1">→</span>

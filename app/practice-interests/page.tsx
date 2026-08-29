@@ -4,58 +4,40 @@ import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
   title: "Practice Interests",
-  description: "Fields of curiosity, current reading, and future directions.",
-  openGraph: { title: "Practice Interests", description: "Curiosity, not yet expertise." },
+  description: "Legal practice interests grounded in training and practical experience.",
+  openGraph: { title: "Practice Interests", description: "Fields shaped by study and experience." },
 };
 
 const INTERESTS = [
   {
-    name: "Technology Law",
-    why: "Courts are being asked to reason about systems their doctrine did not anticipate. That gap is where the best law will be written this decade.",
-    reading: "Cohen — Between Truth and Power",
-    course: "Cyberlaw · Data Protection Seminar",
+    name: "Litigation & Courtroom Practice",
+    why: "More than 40 days observing and summarising proceedings at Makadara and Kibera Law Courts built a practical foundation in trial preparation, court procedure, and composed work under pressure.",
+    evidence: "Judicial internship · Makadara & Kibera Law Courts",
   },
   {
-    name: "Constitutional Law",
-    why: "It is the grammar of every other subject. A confident constitutional argument is often the shortest line between injustice and remedy.",
-    reading: "Ghai & Cottrell — Kenya's Constitution",
-    course: "Advanced Constitutional Law",
+    name: "Insurance Law & Claims",
+    why: "Experience assessing quantum and liability at Kenindia Assurance developed an interest in clear legal opinions, careful claims analysis, and well-prepared client matters.",
+    evidence: "Legal internship · Kenindia Assurance Company",
   },
   {
-    name: "Commercial Law",
-    why: "Because ordinary people build their lives on ordinary contracts — and the drafting of those contracts is real welfare work.",
-    reading: "McKendrick — Contract Law",
-    course: "Sales & Agency",
+    name: "Mediation & Dispute Resolution",
+    why: "Professional mediation certification and hands-on ADR work at CLEAR Kenya support a practical, client-centred approach to resolving conflict.",
+    evidence: "Certified Professional Mediator · CLEAR Kenya",
   },
   {
     name: "Data Protection",
-    why: "A young statute, a young regulator, and a very old question about dignity. The doctrine is still being made.",
-    reading: "ODPC Determinations 2024",
-    course: "Data Protection Seminar",
+    why: "Certified training through CIPIT at Strathmore University strengthened an interest in responsible information governance and the legal questions surrounding personal data.",
+    evidence: "CIPIT Data Protection Course · Strathmore University",
   },
   {
-    name: "Human Rights",
-    why: "The discipline that keeps every other one honest.",
-    reading: "Sen — The Idea of Justice",
-    course: "Human Rights in Africa",
+    name: "Client Advisory & Access to Justice",
+    why: "Supporting low-income clients to understand and realise their rights reinforced the importance of clear communication, patient consultation, and practical legal guidance.",
+    evidence: "Legal internship · CLEAR Kenya",
   },
   {
-    name: "Environmental Law",
-    why: "Public-trust doctrine deserves a serious jurisprudence in Kenya. I would like to help write it.",
-    reading: "Environmental Management and Co-ordination Act",
-    course: "Natural Resources Law",
-  },
-  {
-    name: "Employment Law",
-    why: "Where the state, the market, and the person meet — and rarely on equal terms.",
-    reading: "ILO Recommendation 198",
-    course: "Labour Relations",
-  },
-  {
-    name: "Intellectual Property",
-    why: "The most philosophical part of the syllabus. Who owns an idea, and who owes it back?",
-    reading: "Drahos — Philosophy of IP",
-    course: "IP Foundations",
+    name: "Business & Regulatory Practice",
+    why: "Leading KAMPUS KASH has provided direct exposure to microfinance operations, organisational decision-making, creative services, and business regulatory matters.",
+    evidence: "Founder & CEO · KAMPUS KASH",
   },
 ];
 
@@ -64,7 +46,7 @@ export default function PracticeInterests() {
     <PageShell
       eyebrow="Interests"
       title="Practice Interests"
-      lede="Not fields of expertise — fields of curiosity. Each is a set of questions I am currently learning to ask well, and the reading that got me there."
+      lede="Fields of developing practice interest, each grounded in direct experience, professional certification, or focused legal study."
     >
       <div className="grid grid-cols-1 gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
         {INTERESTS.map((it, i) => (
@@ -77,14 +59,10 @@ export default function PracticeInterests() {
               {it.name}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-charcoal">{it.why}</p>
-            <dl className="mt-6 space-y-3 border-t border-border pt-6 text-sm">
+            <dl className="mt-6 border-t border-border pt-6 text-sm">
               <div className="flex gap-4">
-                <dt className="folio w-24 shrink-0">Reading</dt>
-                <dd className="italic">{it.reading}</dd>
-              </div>
-              <div className="flex gap-4">
-                <dt className="folio w-24 shrink-0">Coursework</dt>
-                <dd>{it.course}</dd>
+                <dt className="folio w-24 shrink-0">Foundation</dt>
+                <dd>{it.evidence}</dd>
               </div>
             </dl>
           </div>

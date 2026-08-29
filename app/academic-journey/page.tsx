@@ -4,59 +4,59 @@ import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
   title: "Academic Journey",
-  description: "A chronological record of education, scholarships, and academic milestones.",
-  openGraph: { title: "Academic Journey", description: "Education, scholarships, and milestones." },
+  description: "Oloo Morgan Hope's legal education, professional training, and certifications.",
+  openGraph: { title: "Academic Journey", description: "Education and professional training." },
 };
 
 const ENTRIES = [
   {
-    year: "2027",
-    tag: "Expected",
-    title: "Bachelor of Laws (LL.B.)",
-    place: "University of Nairobi — School of Law",
-    body: "Concentrations forming in Constitutional Law, Commercial Law, and emerging Technology & Data Protection frameworks. Independent research on judicial reasoning in devolution disputes.",
+    year: "Ongoing",
+    tag: "Professional training",
+    title: "Advocates Training Programme",
+    place: "Kenya School of Law · Nairobi",
+    body: "Currently undertaking the Advocates Training Programme. Pupillage is pending.",
   },
   {
-    year: "2026",
-    tag: "Milestone",
-    title: "Research Assistant — Faculty of Law",
-    place: "Prof. J. Otieno · Comparative Constitutional Studies",
-    body: "Assisting on a working paper examining the Bill of Rights in three East African constitutions.",
+    year: "Ongoing",
+    tag: "Professional studies",
+    title: "Certified Secretaries · Advanced Level",
+    place: "KASNEB",
+    body: "Pursuing advanced-level Certified Secretaries studies alongside professional legal training.",
   },
   {
     year: "2025",
-    tag: "Award",
-    title: "Dean's Commendation",
-    place: "Legal Research & Writing",
-    body: "Recognised for sustained excellence across three consecutive semesters. Featured in the faculty's annual honours list.",
+    tag: "Degree",
+    title: "Bachelor of Laws (LL.B.)",
+    place: "Chuka University · Kenya",
+    body: "Completed in April 2025 with Second Class Honours, Upper Division.",
   },
   {
-    year: "2024",
-    tag: "Scholarship",
-    title: "Chancellor's Merit Award",
-    place: "University of Nairobi",
-    body: "Partial tuition scholarship awarded on academic performance and leadership.",
+    year: "July 2025",
+    tag: "Certification",
+    title: "Certified Professional Mediator (CPM)",
+    place: "International Professional Mediation Innovate Services (IPMIS)",
+    body: "Completed professional mediation training, strengthening practical dispute-resolution and facilitation skills.",
   },
   {
-    year: "2024",
-    tag: "Certificate",
-    title: "Certificate in Legal Research Methods",
-    place: "Strathmore Institute of Advanced Studies",
-    body: "Six-week intensive on Kenyan and comparative research databases, citation, and empirical methods.",
+    year: "Certified",
+    tag: "Short course",
+    title: "CIPIT Data Protection Course",
+    place: "Strathmore University",
+    body: "Certified short-course study in data protection through the Centre for Intellectual Property and Information Technology Law.",
   },
   {
-    year: "2023",
-    tag: "Milestone",
-    title: "Called to University",
-    place: "University of Nairobi — School of Law",
-    body: "Admitted to the LL.B. programme with distinction in the entry examination.",
+    year: "Certified",
+    tag: "Short course",
+    title: "The SDGs and the Law",
+    place: "University of Cambridge",
+    body: "Certified short-course study connecting legal practice and the Sustainable Development Goals.",
   },
   {
-    year: "2023",
-    tag: "Milestone",
+    year: "2020",
+    tag: "Secondary education",
     title: "Kenya Certificate of Secondary Education",
-    place: "Alliance High School",
-    body: "A minus. Debate Captain. Head of Model United Nations. Editor of the school journal.",
+    place: "Shimo-la-Tewa School · Kenya",
+    body: "Achieved a mean grade of B+, with an A− in English.",
   },
 ];
 
@@ -65,7 +65,7 @@ export default function AcademicJourney() {
     <PageShell
       eyebrow="Education"
       title="Academic Journey"
-      lede="A chronological ledger of the years that shaped the beginnings of a legal mind — degrees, scholarships, and the quieter certificates that mattered."
+      lede="A record of formal legal education, professional qualification, and focused study — from an upper-division LL.B. to the Advocates Training Programme."
     >
       <ol className="relative">
         <span

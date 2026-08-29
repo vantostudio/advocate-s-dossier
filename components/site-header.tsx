@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { NAV } from "./nav";
 
@@ -11,6 +11,10 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => {
@@ -28,17 +32,57 @@ export function SiteHeader() {
     };
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
+  // Close on navigation, and hand focus back to the trigger.
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  const close = useCallback(() => {
+    setOpen(false);
+    triggerRef.current?.focus();
+  }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    if (!open) return;
+
+    // Locking the body also removes the scrollbar, which shifts the whole page
+    // left on desktop. Pad by the exact width it occupied.
+    const gap = window.innerWidth - document.documentElement.clientWidth;
+    const { overflow, paddingRight } = document.body.style;
+    document.body.style.overflow = "hidden";
+    if (gap > 0) document.body.style.paddingRight = `${gap}px`;
+
+    closeRef.current?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      // Keep Tab inside the panel while it is open.
+      const focusables = panelRef.current?.querySelectorAll<HTMLElement>("a[href], button");
+      if (!focusables || focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
     window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = overflow;
+      document.body.style.paddingRight = paddingRight;
       window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, close]);
 
   return (
     <>
@@ -49,21 +93,22 @@ export function SiteHeader() {
             : "border-b border-transparent bg-transparent"
         }`}
       >
-        <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-6 md:px-12 md:py-5">
+        <div className="mx-auto grid max-w-[1400px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-3 sm:px-6 md:px-12 md:py-5">
           <Link href="/" className="group flex min-w-0 items-baseline gap-3">
             <span className="shrink-0 font-display text-[1.2rem] leading-none tracking-tight sm:text-[1.35rem]">
-              Advocate<span className="text-bronze">.</span>Profile
+              Morgan<span className="text-bronze">.</span>Hope
             </span>
           </Link>
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-5">
-            <nav className="hidden items-center gap-7 xl:flex">
+            <nav aria-label="Primary" className="hidden items-center gap-7 xl:flex">
               {NAV.slice(1, 6).map((item) => {
                 const active = pathname === item.href;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
+                    aria-current={active ? "page" : undefined}
                     className={`link-underline text-[13px] tracking-wide transition-colors ${
                       active ? "text-charcoal" : "text-ink-muted hover:text-charcoal"
                     }`}
@@ -78,12 +123,15 @@ export function SiteHeader() {
             <span className="hidden h-5 w-px bg-border xl:block" />
 
             <button
+              ref={triggerRef}
               onClick={() => setOpen(true)}
-              className="group flex items-center gap-3 text-[11px] tracking-[0.18em] uppercase text-charcoal sm:text-[12px]"
+              aria-expanded={open}
+              aria-controls="site-menu"
               aria-label="Open menu"
+              className="group -mr-1 flex items-center gap-3 px-1 py-1 text-[11px] tracking-[0.18em] uppercase text-charcoal sm:mr-0 sm:text-[12px]"
             >
               <span className="hidden sm:inline">Menu</span>
-              <span className="flex h-9 w-9 items-center justify-center rounded-full border border-charcoal/25 transition-all duration-300 group-hover:border-bronze group-hover:bg-bronze group-hover:text-paper">
+              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/25 transition-all duration-300 group-hover:border-bronze group-hover:bg-bronze group-hover:text-paper sm:h-9 sm:w-9">
                 <span className="flex flex-col gap-[3px]">
                   <span className="block h-[1px] w-4 bg-current transition-transform duration-300 group-hover:-translate-y-[1px]" />
                   <span className="block h-[1px] w-4 bg-current" />
@@ -103,52 +151,62 @@ export function SiteHeader() {
 
       {open && (
         <div
-          className="fixed inset-0 z-50 animate-fade-in overflow-y-auto bg-paper grain"
+          ref={panelRef}
+          id="site-menu"
+          className="fixed inset-0 z-50 animate-fade-in overflow-y-auto overscroll-contain bg-paper grain"
           role="dialog"
           aria-modal="true"
+          aria-label="Site navigation"
         >
-          <div className="mx-auto flex min-h-full max-w-[1400px] flex-col px-5 py-4 sm:px-6 md:px-12 md:py-5">
+          <div className="mx-auto flex min-h-full max-w-[1400px] flex-col px-5 py-3 sm:px-6 md:px-12 md:py-5">
             <div className="flex items-center justify-between">
               <span className="folio">Navigation</span>
               <button
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-2 text-[12px] tracking-[0.18em] uppercase text-charcoal transition-colors hover:text-bronze"
+                ref={closeRef}
+                onClick={close}
                 aria-label="Close menu"
+                className="-mr-1 flex items-center gap-2 px-1 py-1 text-[11px] tracking-[0.18em] uppercase text-charcoal transition-colors hover:text-bronze sm:mr-0 sm:text-[12px]"
               >
                 Close
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-charcoal/25">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/25 text-base sm:h-9 sm:w-9">
                   ×
                 </span>
               </button>
             </div>
 
-            <div className="mt-10 grid flex-1 grid-cols-1 gap-x-16 md:mt-16 md:grid-cols-2">
-              {NAV.map((item, i) => {
+            <nav
+              aria-label="All sections"
+              className="mt-8 grid flex-1 grid-cols-1 gap-x-16 md:mt-16 md:grid-cols-2"
+            >
+              {NAV.map((item) => {
                 const active = pathname === item.href;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group flex items-baseline gap-4 border-b border-border py-4 transition-colors hover:text-bronze md:gap-6 md:py-5"
-                    style={{ animationDelay: `${i * 40}ms` }}
+                    aria-current={active ? "page" : undefined}
+                    className="group flex items-baseline gap-4 border-b border-border py-3.5 transition-colors hover:text-bronze md:gap-6 md:py-5"
                   >
                     <span
-                      className={`min-w-0 truncate font-display text-2xl transition-transform duration-500 group-hover:translate-x-1 sm:text-3xl md:text-4xl ${
+                      className={`min-w-0 font-display text-[1.6rem] leading-tight transition-transform duration-500 group-hover:translate-x-1 sm:text-3xl md:text-4xl ${
                         active ? "text-bronze" : ""
                       }`}
                     >
                       {item.label}
                     </span>
-                    <span className="ml-auto shrink-0 text-ink-muted opacity-0 transition-opacity group-hover:opacity-100">
+                    <span
+                      aria-hidden
+                      className="ml-auto shrink-0 text-ink-muted opacity-0 transition-opacity group-hover:opacity-100"
+                    >
                       →
                     </span>
                   </Link>
                 );
               })}
-            </div>
+            </nav>
 
-            <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
-              <span className="folio">Nairobi · English · Kiswahili</span>
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border pt-6 pb-2">
+              <span className="folio">Nairobi · English · Swahili</span>
               <span className="folio">© 2026</span>
             </div>
           </div>

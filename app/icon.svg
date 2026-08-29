@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Oloo Morgan Hope">
+  <rect width="64" height="64" rx="14" fill="#1B1A18"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 49 L32 14 L48 49" stroke="#F7F4EF" stroke-width="6.5"/>
+    <path d="M23.5 36 H40.5" stroke="#A47745" stroke-width="6"/>
+  </g>
+</svg>

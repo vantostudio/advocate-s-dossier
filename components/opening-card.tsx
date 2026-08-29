@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 
 const FACTS = [
   ["Country", "Kenya"],
-  ["Standing", "LL.B. Candidate"],
-  ["Class of", "2027"],
+  ["Standing", "ATP Candidate"],
+  ["Credential", "Certified Mediator"],
+  ["Status", "Pupillage pending"],
   ["Based in", "Nairobi"],
 ];
 
@@ -23,19 +24,17 @@ export function OpeningCard() {
         opened ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
       }`}
     >
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 border-b border-border pb-6">
+      <div className="grid grid-cols-1 items-start gap-5 border-b border-border pb-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-4">
         <div className="min-w-0">
           <p className="folio">Profile</p>
-          <p className="mt-2 truncate font-display text-2xl text-bronze md:text-3xl">
-            Amani W. Kariuki
-          </p>
+          <p className="mt-2 font-display text-2xl text-bronze md:text-3xl">Oloo Morgan Hope</p>
         </div>
-        <div className="shrink-0 text-right">
+        <div className="shrink-0 sm:text-right">
           <p className="folio">Programme</p>
-          <p className="mt-2 font-mono text-xs sm:text-sm">LL.B. (Hons), 2027</p>
+          <p className="mt-2 font-mono text-xs sm:text-sm">ATP · Kenya School of Law</p>
         </div>
       </div>
-      <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 text-sm md:grid-cols-4">
+      <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 text-sm md:grid-cols-5">
         {FACTS.map(([k, v]) => (
           <div key={k} className="min-w-0">
             <p className="folio">{k}</p>
@@ -44,8 +43,7 @@ export function OpeningCard() {
         ))}
       </div>
       <p className="mt-8 text-sm leading-relaxed text-ink-muted">
-        Academic journey · moot court · research &amp; publications · experience · practice
-        interests · recognition · résumé.
+        Law graduate · legal researcher · certified professional mediator · creative entrepreneur.
       </p>
     </div>
   );

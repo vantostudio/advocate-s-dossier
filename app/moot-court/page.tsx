@@ -3,37 +3,36 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Moot Court",
-  description: "Competitions, memorials, and lessons from advocacy in rehearsal.",
-  openGraph: { title: "Moot Court", description: "Competitions, memorials, and lessons." },
+  title: "Advocacy & ADR",
+  description:
+    "Courtroom exposure, case preparation, mediation, and client-centred dispute resolution.",
+  openGraph: { title: "Advocacy & ADR", description: "Courtroom exposure and dispute resolution." },
 };
 
-const COMPETITIONS = [
+const ADVOCACY = [
   {
-    name: "Philip C. Jessup International Law Moot",
-    year: "2026",
-    role: "Oralist · Respondent Bench 2",
-    award: "Runner-up · National Rounds",
-    case: "State of Aurora v. State of Rovinia — territorial jurisdiction, cyber-operations, and the customary threshold of use of force.",
-    lesson:
-      "Elegance of argument is not decoration. It is the discipline of removing everything the bench does not need to hear.",
-  },
-  {
-    name: "East Africa Human Rights Moot",
-    year: "2025",
-    role: "Lead Counsel · Applicant",
-    award: "Best Memorial (Applicant)",
-    case: "On the horizontal application of socio-economic rights in privatised utilities.",
-    lesson:
-      "Written pleadings survive after the oralist sits down. Write for the reader who will not hear you speak.",
-  },
-  {
-    name: "Kenya National Constitutional Moot",
+    name: "Courtroom Exposure",
     year: "2024",
-    role: "Second Speaker · Respondent",
-    award: "Quarter-finalist",
-    case: "Devolution and revenue allocation — Article 203(1) contested formulas.",
-    lesson: "The bench asks the question you feared. Answer it first, then continue.",
+    role: "Judicial Intern · Makadara & Kibera Law Courts",
+    marker: "40+ court days",
+    work: "Attended and summarised proceedings across more than 40 court days, building a practical understanding of trial preparation, court procedure, and the disciplined documentation of judicial proceedings.",
+    capabilities: ["Proceedings summaries", "Court procedure", "Composure under pressure"],
+  },
+  {
+    name: "Claims & Case Preparation",
+    year: "2025",
+    role: "Legal Intern · Kenindia Assurance Company",
+    marker: "Insurance law",
+    work: "Prepared legal opinions on quantum and liability, supported case preparation, and participated in client consultations—experience that connected careful analysis with practical dispute work.",
+    capabilities: ["Legal opinions", "Claims analysis", "Client consultation"],
+  },
+  {
+    name: "Alternative Dispute Resolution",
+    year: "2023 · 2025",
+    role: "CLEAR Kenya · Certified Professional Mediator",
+    marker: "Client-centred resolution",
+    work: "Organised ADR for parties in conflict at CLEAR Kenya and later earned Certified Professional Mediator status through IPMIS in July 2025.",
+    capabilities: ["Mediation", "Conflict facilitation", "Access to justice"],
   },
 ];
 
@@ -41,41 +40,34 @@ export default function MootCourt() {
   return (
     <PageShell
       eyebrow="Advocacy"
-      title="Moot Court"
-      lede="Advocacy in rehearsal. Every competition below was, first, hundreds of hours of quiet reading — and then, briefly, a room in which to make it count."
+      title="Advocacy & ADR"
+      lede="A practical foundation in courtroom procedure, case preparation, claims analysis, and mediation—developed across judicial, corporate, and NGO environments."
     >
       <div className="space-y-16">
-        {COMPETITIONS.map((c) => (
+        {ADVOCACY.map((item) => (
           <article
-            key={c.name}
+            key={item.name}
             className="grid grid-cols-1 gap-8 border-t border-border pt-10 md:grid-cols-12"
           >
             <div className="md:col-span-4">
-              <p className="folio">{c.year}</p>
-              <h2 className="mt-3 font-display text-3xl leading-tight md:text-4xl">{c.name}</h2>
-              <p className="mt-4 text-sm italic text-ink-muted">{c.role}</p>
+              <p className="folio">{item.year}</p>
+              <h2 className="mt-3 font-display text-3xl leading-tight md:text-4xl">{item.name}</h2>
+              <p className="mt-4 text-sm italic text-ink-muted">{item.role}</p>
               <p className="mt-1 text-sm font-medium" style={{ color: "var(--bronze)" }}>
-                {c.award}
+                {item.marker}
               </p>
             </div>
             <div className="md:col-span-8 md:pl-10 md:border-l md:border-border">
-              <p className="folio">The Case</p>
-              <p className="mt-3 text-lg leading-relaxed text-charcoal">{c.case}</p>
-              <p className="folio mt-8">What it taught</p>
-              <blockquote className="mt-3 border-l-2 border-bronze pl-5 font-display text-2xl italic leading-snug text-charcoal">
-                {c.lesson}
-              </blockquote>
-              <div className="mt-6 flex flex-wrap gap-4 text-sm">
-                <a href="#" className="border-b border-charcoal pb-0.5 hover:text-bronze">
-                  Read the memorial (PDF)
-                </a>
-                <a href="#" className="text-ink-muted hover:text-bronze">
-                  Certificate
-                </a>
-                <a href="#" className="text-ink-muted hover:text-bronze">
-                  Bench notes
-                </a>
-              </div>
+              <p className="folio">Experience</p>
+              <p className="mt-3 text-lg leading-relaxed text-charcoal">{item.work}</p>
+              <p className="folio mt-8">Capabilities developed</p>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {item.capabilities.map((capability) => (
+                  <li key={capability} className="folio border border-border px-3 py-1">
+                    {capability}
+                  </li>
+                ))}
+              </ul>
             </div>
           </article>
         ))}

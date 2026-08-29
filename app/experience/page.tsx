@@ -4,43 +4,50 @@ import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: "Internships, legal aid, and research work at the edge of practice.",
-  openGraph: { title: "Experience", description: "Internships, legal aid, and research work." },
+  description: "Judicial, insurance, NGO, entrepreneurial, and creative experience.",
+  openGraph: { title: "Experience", description: "Legal and professional experience." },
 };
 
 const ROLES = [
   {
-    period: "2026 — present",
+    period: "May — Sep 2025",
     role: "Legal Intern",
-    org: "Ochieng, Njoroge & Co. Advocates",
+    org: "Kenindia Assurance Company",
     city: "Nairobi",
-    body: "Drafting pleadings and research memoranda for commercial disputes. Attending High Court mentions with supervising counsel.",
-    skills: ["Commercial drafting", "Case research", "Client interviews"],
-    ref: "Reference on request — Managing Partner",
+    body: "Provided legal opinions on the quantum and liability of claims, while supporting case preparation and client consultations in an insurance-law setting.",
+    skills: ["Claims analysis", "Legal opinions", "Case preparation", "Client consultation"],
   },
   {
-    period: "2025 · 12 weeks",
-    role: "Legal Aid Volunteer",
-    org: "Kituo Cha Sheria",
-    city: "Nairobi & Mombasa",
-    body: "Front-desk intake for pro-bono clients; drafting demand letters and small-claims filings; participating in weekend outreach clinics.",
-    skills: ["Client intake", "Plain-language drafting", "Community outreach"],
-  },
-  {
-    period: "2025",
-    role: "Research Assistant",
-    org: "University of Nairobi, Faculty of Law",
-    city: "Prof. J. Otieno",
-    body: "Comparative constitutional research on Bills of Rights in East Africa. Curated a working bibliography of 240 sources.",
-    skills: ["Comparative research", "Citation management", "Editing"],
-  },
-  {
-    period: "2024 · summer",
-    role: "Judicial Attachment",
-    org: "High Court of Kenya — Milimani Commercial Division",
+    period: "May — Aug 2024",
+    role: "Judicial Intern",
+    org: "Makadara & Kibera Law Courts",
     city: "Nairobi",
-    body: "Observed proceedings, prepared case digests for chambers, and shadowed the Registrar on case-management sessions.",
-    skills: ["Court procedure", "Case digesting", "Chambers etiquette"],
+    body: "Attended and summarised proceedings across more than 40 court days. Conducted legal research and drafted memoranda and professional correspondence.",
+    skills: ["Court procedure", "Proceedings summaries", "Legal research", "Memoranda"],
+  },
+  {
+    period: "May — Sep 2023",
+    role: "Legal Intern",
+    org: "CLEAR Kenya",
+    city: "Mombasa",
+    body: "Organised alternative dispute resolution for parties in conflict and supported low-income clients in understanding and pursuing their legal rights.",
+    skills: ["Alternative dispute resolution", "Client support", "Legal empowerment"],
+  },
+  {
+    period: "2022 — present",
+    role: "Founder & CEO",
+    org: "KAMPUS KASH",
+    city: "Entrepreneurial venture",
+    body: "Leads microfinance operations, creative services, and business regulatory matters, combining strategic thinking with hands-on organisational leadership.",
+    skills: ["Business operations", "Regulatory matters", "Leadership", "Creative services"],
+  },
+  {
+    period: "4 years' experience",
+    role: "Head Designer",
+    org: "Independent Graphic Design Practice",
+    city: "Remote · Pro level",
+    body: "Designed more than 1,000 professional templates and visual assets—including logos, letterheads, ID cards, business cards, brochures, and digital and print materials—for companies such as Take Me Out Adventures, educational institutions, and individual clients. Advanced Canva practice supports fast, versatile delivery for branding, regulatory documents, and promotional campaigns.",
+    skills: ["Canva", "Brand collateral", "Print & digital design", "Client delivery"],
   },
 ];
 
@@ -49,7 +56,7 @@ export default function Experience() {
     <PageShell
       eyebrow="Practice"
       title="Experience"
-      lede="Not yet an advocate. But not idle either. These are the rooms in which I have been quietly useful — and what they taught me."
+      lede="Practical legal exposure across insurance, the courts, and community justice—supported by entrepreneurial leadership and a substantial creative practice."
     >
       <div className="space-y-0">
         {ROLES.map((r) => (
@@ -65,7 +72,6 @@ export default function Experience() {
               <h2 className="font-display text-3xl leading-tight md:text-4xl">{r.role}</h2>
               <p className="mt-2 text-lg italic text-ink-muted">{r.org}</p>
               <p className="mt-5 text-base leading-relaxed">{r.body}</p>
-              {r.ref && <p className="mt-4 text-xs text-ink-muted">{r.ref}</p>}
             </div>
             <div className="md:col-span-3">
               <p className="folio">Skills sharpened</p>

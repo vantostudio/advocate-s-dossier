@@ -15,8 +15,15 @@ export function Reveal({
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
+    // Anyone who asked for less motion gets the content immediately.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShown(true);
+      return;
+    }
+
     const el = ref.current;
     if (!el) return;
+
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,7 +41,8 @@ export function Reveal({
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"} ${className}`}
+      data-shown={shown ? "" : undefined}
+      className={`reveal transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${className}`}
     >
       {children}
     </div>

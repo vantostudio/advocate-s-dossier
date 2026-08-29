@@ -169,6 +169,44 @@
     background: var(--bronze);
     color: var(--paper);
   }
+
+  /* Every interactive element here is custom-styled, so without this keyboard
+     users get no focus indicator at all. */
+  :focus-visible {
+    outline: 2px solid var(--bronze);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Stop long unbroken strings (emails, URLs) from forcing a horizontal scroll. */
+  p,
+  h1,
+  h2,
+  h3,
+  li,
+  a {
+    overflow-wrap: break-word;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
 }
 
 @utility rule {
@@ -228,5 +266,39 @@
     pointer-events: none;
     opacity: var(--grain-opacity);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@utility skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  background: var(--charcoal);
+  color: var(--paper);
+  padding: 0.6rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease;
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+/* Reveal-on-scroll. Deliberately unlayered so it outranks Tailwind's utilities
+   layer, and gated on `scripting` so that when JS is unavailable the content is
+   simply visible rather than stranded at opacity 0. */
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+
+  .reveal[data-shown] {
+    opacity: 1;
+    transform: none;
   }
 }

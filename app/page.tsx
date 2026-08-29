@@ -5,73 +5,74 @@ import { OpeningCard } from "@/components/opening-card";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: { absolute: "Identity — Advocate Profile" },
-  description: "Future Advocate. Researcher. Problem Solver. Building tomorrow's legal profession.",
+  title: { absolute: "Oloo Morgan Hope — Professional Legal Dossier" },
+  description:
+    "Law graduate, Advocates Training Programme candidate, and Certified Professional Mediator with practical court, insurance, and client advisory experience.",
   openGraph: {
-    title: "Identity — Advocate Profile",
-    description: "Future Advocate. Researcher. Problem Solver.",
+    title: "Oloo Morgan Hope — Professional Legal Dossier",
+    description: "Law graduate. Certified mediator. ATP candidate.",
   },
 };
 
 const QUICK_FACTS = [
-  ["Current", "LL.B., Year III"],
-  ["Expected", "Graduation 2027"],
-  ["Languages", "English · Kiswahili"],
-  ["Located", "Nairobi, Kenya"],
+  ["Current", "ATP Candidate"],
+  ["Court exposure", "40+ trial days"],
+  ["Credential", "Professional Mediator"],
+  ["Based", "Nairobi, Kenya"],
 ];
 
 const TIMELINE = [
   {
-    year: "2027",
-    title: "Bachelor of Laws (LL.B.)",
-    place: "University of Nairobi — School of Law",
-    note: "Expected. Coursework in Constitutional, Commercial, and Technology Law.",
+    year: "Ongoing",
+    title: "Advocates Training Programme",
+    place: "Kenya School of Law · Nairobi",
+    note: "Professional legal training in progress, with pupillage pending.",
   },
   {
     year: "2025",
-    title: "Dean's Commendation",
-    place: "Legal Research & Writing",
-    note: "For sustained excellence across three consecutive semesters.",
+    title: "Bachelor of Laws (LL.B.)",
+    place: "Chuka University · Kenya",
+    note: "Completed April 2025 with Second Class Honours, Upper Division.",
   },
   {
-    year: "2024",
-    title: "Moot Court — Quarter-finalist",
-    place: "East Africa Regional Rounds",
-    note: "Best Memorial (Respondent) — Constitutional Bench.",
+    year: "2025",
+    title: "Certified Professional Mediator",
+    place: "International Professional Mediation Innovate Services",
+    note: "Professional mediation credential awarded in July 2025.",
   },
   {
-    year: "2023",
+    year: "2020",
     title: "Kenya Certificate of Secondary Education",
-    place: "Alliance High School",
-    note: "Debate Captain. Head of Model United Nations.",
+    place: "Shimo-la-Tewa School · Kenya",
+    note: "Mean grade B+, including an A− in English.",
   },
 ];
 
 const SECTIONS = [
   {
     href: "/moot-court",
-    t: "Moot Court",
-    d: "Advocacy in rehearsal — competitions, memorials, and the lessons that stayed.",
+    t: "Advocacy & ADR",
+    d: "Courtroom exposure, claims preparation, mediation, and client-centred dispute resolution.",
   },
   {
     href: "/research",
-    t: "Research & Publications",
-    d: "Working papers, essays, and case notes. Every piece with an abstract and a source.",
+    t: "Research & Writing",
+    d: "Legal opinions, memoranda, correspondence, case preparation, and focused legal study.",
   },
   {
     href: "/experience",
     t: "Experience",
-    d: "Internships, legal aid, and quiet work at the edge of practice.",
+    d: "Practical work across judicial, corporate, NGO, entrepreneurial, and creative settings.",
   },
   {
     href: "/practice-interests",
     t: "Practice Interests",
-    d: "Curiosity, not expertise — the questions I am currently learning to ask.",
+    d: "The legal fields shaped by hands-on experience, certification, and continued study.",
   },
   {
     href: "/recognition",
     t: "Recognition",
-    d: "Awards, leadership, and community — assembled honestly.",
+    d: "Professional credentials, leadership, community contribution, and creative achievement.",
   },
   {
     href: "/resume",
@@ -103,11 +104,11 @@ export default function Identity() {
           <p className="folio">Identity</p>
           <h1
             className="mt-6 font-display leading-[0.9] tracking-[-0.02em] text-charcoal md:mt-8"
-            style={{ fontSize: "clamp(2.75rem, 11vw, 9.5rem)" }}
+            style={{ fontSize: "clamp(2.1rem, 10.5vw, 9.5rem)" }}
           >
-            Future Advocate.
+            Law Graduate.
             <br />
-            <span className="italic text-ink-muted">Researcher.</span>
+            <span className="italic text-ink-muted">Mediator.</span>
             <br />
             Problem&nbsp;Solver.
           </h1>
@@ -118,9 +119,10 @@ export default function Identity() {
               <p className="folio">Statement</p>
             </div>
             <p className="text-lg leading-relaxed text-charcoal md:col-span-8 md:text-2xl">
-              Building tomorrow&apos;s legal profession — one carefully argued brief, one honest
-              question, one thoughtful hour of reading at a time. This is a working record of my
-              studies, my writing, and the quiet discipline of learning the law.
+              I am a law graduate and Advocates Training Programme candidate at the Kenya School of
+              Law, with more than 40 days of courtroom exposure and practical experience in
+              insurance law, alternative dispute resolution, legal research, drafting, and client
+              advisory work across judicial, corporate, and NGO settings.
             </p>
           </div>
         </Reveal>
@@ -133,7 +135,11 @@ export default function Identity() {
             {QUICK_FACTS.map(([k, v], i) => (
               <div
                 key={k}
-                className={`px-1 py-6 md:px-8 ${i % 2 === 1 ? "border-l border-border md:border-l" : ""} ${i > 1 ? "border-t border-border md:border-t-0" : ""} ${i === 2 ? "md:border-l" : ""}`}
+                className={`px-4 py-6 first:pl-0 md:px-8 md:first:pl-0 ${
+                  i % 2 === 1 ? "border-l border-border" : ""
+                } ${i > 1 ? "border-t border-border md:border-t-0" : ""} ${
+                  i === 2 ? "md:border-l md:border-border" : ""
+                }`}
               >
                 <p className="folio">{k}</p>
                 <p className="mt-2 font-display text-lg leading-tight sm:text-xl md:text-2xl">
@@ -161,7 +167,7 @@ export default function Identity() {
         </div>
         <ol className="mt-8 md:mt-10">
           {TIMELINE.map((row, i) => (
-            <Reveal key={row.year} delay={i * 70}>
+            <Reveal key={`${row.year}-${row.title}`} delay={i * 70}>
               <li className="group grid grid-cols-1 gap-3 border-b border-border py-7 transition-colors hover:bg-[color-mix(in_oklab,var(--paper-raised),transparent_35%)] md:grid-cols-12 md:gap-8 md:py-8">
                 <div className="md:col-span-2">
                   <p className="font-mono text-sm text-bronze">{row.year}</p>
@@ -226,8 +232,8 @@ export default function Identity() {
           <p className="folio md:col-span-3">In closing</p>
           <div className="md:col-span-9">
             <p className="font-display text-2xl leading-snug text-charcoal sm:text-3xl md:text-5xl">
-              &ldquo;The law is a discipline of listening carefully — to statute, to precedent, and
-              above all, to the person in front of you.&rdquo;
+              Detail-oriented, analytically rigorous, and composed under pressure — ready to build
+              stronger advocacy, drafting, and courtroom practice under experienced counsel.
             </p>
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
               <Link
@@ -243,7 +249,7 @@ export default function Identity() {
                 href="/resume"
                 className="group inline-flex items-baseline gap-3 border-b border-transparent pb-1 text-sm text-ink-muted hover:border-border hover:text-charcoal"
               >
-                Download résumé
+                View résumé
               </Link>
             </div>
           </div>
